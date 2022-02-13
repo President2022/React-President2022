@@ -1,0 +1,7 @@
+.menu {
+  /* position: fixed; */
+  width: 240px;
+  top: 56px;
+  padding: 12px 12px 12px 0;
+  box-sizing: border-box;
+}
