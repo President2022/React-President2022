@@ -5,9 +5,6 @@ function Menu() {
   return (
     <div className={styles.menu}>
       <li>
-        <Link to="/">홈</Link>
-      </li>
-      <li>
         <Link to="/About">프로젝트 설명</Link>
       </li>
       <li>
