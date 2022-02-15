@@ -9,9 +9,14 @@
   flex-direction: column;
 }
 .layout {
-  display: flex;
+  display: fixed;
+  position: relative;
+  top: 76px;
   flex: 1;
 }
 .contents {
+  /* display: absolute; */
+  margin-left: 276px;
+  margin-top: 25px;
   flex: 1;
 }

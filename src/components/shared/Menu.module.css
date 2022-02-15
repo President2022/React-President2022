@@ -1,7 +1,17 @@
 .menu {
-  /* position: fixed; */
+  position: fixed;
+  list-style: none;
   width: 240px;
-  top: 56px;
-  padding: 12px 12px 12px 0;
+  /* top: 76px; */
+  /* margin: 0; */
+  /* padding: 20px; */
   box-sizing: border-box;
+}
+.title {
+  padding: 15px;
+  font-weight: 100;
+}
+.link {
+  color: #555;
+  text-decoration: none;
 }
