@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import styles from "./Header.module.css";
-import logo from "../../data/Korean_Voting_Stamp.svg";
+import logo from "../../asset/Korean_Voting_Stamp.svg";
 
 function Header() {
   return (
-    <div>
+    <div className={styles.header}>
       <Link to="/">
         <img src={logo} className={styles.logo} alt="logo" />
       </Link>
