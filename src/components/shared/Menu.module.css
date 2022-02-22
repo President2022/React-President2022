@@ -14,4 +14,17 @@
 .link {
   color: #555;
   text-decoration: none;
+  font-weight: 500;
+}
+.link:hover {
+  color: #999;
+  font-weight: 600;
+}
+.focused {
+  color: blueviolet;
+  font-weight: 600;
+  text-decoration: none;
+}
+.focused:hover {
+  color: rgb(155, 0, 255);
 }
