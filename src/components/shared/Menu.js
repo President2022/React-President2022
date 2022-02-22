@@ -10,8 +10,8 @@ function Menu({ activeMenu }) {
   ];
   return (
     <ul className={styles.menu}>
-      {menuList.map((page) => (
-        <li className={styles.title}>
+      {menuList.map((page, index) => (
+        <li className={styles.title} key={index}>
           <Link
             className={
               activeMenu === page.link.substring(1)

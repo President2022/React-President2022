@@ -1,23 +1,23 @@
 .menu {
   position: fixed;
+  flex: 1 0 240px;
   list-style: none;
   width: 240px;
-  /* top: 76px; */
-  /* margin: 0; */
-  /* padding: 20px; */
+  height: 100%;
+  margin: 0;
+  padding-top: 10px;
+  background-color: #fff;
   box-sizing: border-box;
 }
 .title {
   padding: 15px;
-  font-weight: 100;
 }
 .link {
-  color: #555;
+  color: #666;
   text-decoration: none;
   font-weight: 500;
 }
 .link:hover {
-  color: #999;
   font-weight: 600;
 }
 .focused {
@@ -26,5 +26,6 @@
   text-decoration: none;
 }
 .focused:hover {
-  color: rgb(155, 0, 255);
+  color: blueviolet;
+  opacity: 0.8;
 }
