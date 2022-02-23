@@ -2,7 +2,7 @@ import Layout from "../components/shared/Layout";
 
 function Keyword() {
   return (
-    <Layout style={{ padding: "1rem 0" }}>
+    <Layout activeMenu="keyword">
       <h2>Keyword</h2>
     </Layout>
   );

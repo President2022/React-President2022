@@ -10,13 +10,13 @@ function Home() {
       <div className={styles.box}>
         <h1 className={styles.h1}>대선 후보 지지율 예측</h1>
         <hr className={styles.hr} />
-        <Typist avgTypingDelay={100} cursor={{ show: false }}>
+        <Typist avgTypingDelay={120} cursor={{ show: false }}>
           텍스트로 예측해본 후보별 지지율
         </Typist>
         <br />▼
       </div>
       <Paper elevation={3} className={styles.linkto}>
-        <Link to="/about">
+        <Link to="/graph">
           <Stamp className={styles.stamp} />
         </Link>
         2022.3.9 투표 꾹 !
