@@ -27,14 +27,14 @@ const data = {
   datasets: [
     {
       type: "line",
-      label: "Dataset 1",
+      label: "이재명",
       borderColor: "rgb(54, 162, 235)",
       borderWidth: 2,
-      data: [1, 2, 3, 4, 5],
+      data: [2, 5, 4, 3, 6, 1],
     },
     {
       type: "line",
-      label: "Dataset 2",
+      label: "윤석열",
       backgroundColor: "rgb(255, 99, 132)",
       data: [1, 2, 3, 4, 5, 6],
       borderColor: "red",
@@ -42,9 +42,9 @@ const data = {
     },
     {
       type: "line",
-      label: "Dataset 3",
+      label: "안철수",
       backgroundColor: "rgb(75, 192, 192)",
-      data: [1, 2, 3, 4, 5, 6],
+      data: [4, 3, 2, 6, 1, 5],
     },
   ],
 };
@@ -95,44 +95,45 @@ const options = {
       },
       usePointStyle: true,
       // 범례 도형 모양과 마찬가지로 툴팁 내부에서도 도형의 모양을 지정할 수 있어요.
-      filter: (item) => item.parsed.y !== null,
-      // 툴팁에 표시될 항목을 필터링할 수 있는데요,
-      // 예를 들어 값이 null인 항목은 툴팁에 나타나지 않게 하려면
-      // 위와 같이 설정해주시면 됩니다.
-      callbacks: {
-        // 툴팁에 표시되는 내용은 이와 같이 콜백 함수를 통해
-        // 조건에 맞게 수정할 수 있습니다!
-        title: (context) => {
-          // 툴팁에서 x축 값이 어떻게 표시될지 설정할 수 있어요.
-          let title = "";
+      // filter: (item) => item.parsed.y !== null,
+      // // 툴팁에 표시될 항목을 필터링할 수 있는데요,
+      // // 예를 들어 값이 null인 항목은 툴팁에 나타나지 않게 하려면
+      // // 위와 같이 설정해주시면 됩니다.
+      // callbacks: {
+      //   // 툴팁에 표시되는 내용은 이와 같이 콜백 함수를 통해
+      //   // 조건에 맞게 수정할 수 있습니다!
+      //   title: (context) => {
+      //     // 툴팁에서 x축 값이 어떻게 표시될지 설정할 수 있어요.
+      //     let title = "";
 
-          // (context를 콘솔에 찍어보시면 차트에 전달되는 dataset과
-          // 그 값들을 확인할 수 있는데요, 이를 바탕으로 조건을 구성하고
-          // 그 조건에 따라 title을 재설정해주시면 됩니다.)
+      //     // (context를 콘솔에 찍어보시면 차트에 전달되는 dataset과
+      //     // 그 값들을 확인할 수 있는데요, 이를 바탕으로 조건을 구성하고
+      //     // 그 조건에 따라 title을 재설정해주시면 됩니다.)
 
-          return title; // 재설정한 title은 꼭 반환해주세요!
-        },
-        label: (context) => {
-          // 툴팁에서 y축 값이 어떻게 표시될지 설정할 수 있어요.
-          let label = context.dataset.label + "" || "";
+      //     return title; // 재설정한 title은 꼭 반환해주세요!
+      //   },
+      //   label: (context) => {
+      //     // 툴팁에서 y축 값이 어떻게 표시될지 설정할 수 있어요.
+      //     let label = context.dataset.label + "" || "";
 
-          const isPrice = label === "주가";
-          // const isEV = label === "EV";
+      //     const isPrice = label === "주가";
+      //     // const isEV = label === "EV";
 
-          if (label) {
-            label = isPrice ? " 주가 : " : " " + label + " : ";
-          }
-          if (context.parsed.y !== null) {
-            // y축 값이 null이 아니라면,
-            // 조건에 따라 label 재할당
-          } else {
-            // y축 값이 null이라면
-            return null; // null 반환
-          }
-
-          return label; // 마찬가지로 재설정한 label도 꼭 반환해주세요!
-        },
-      },
+      //     if (label) {
+      //       label = isPrice ? " 주가 : " : " " + label + " : ";
+      //     }
+      //     if (context.parsed.y !== null) {
+      //       // y축 값이 null이 아니라면,
+      //       // 조건에 따라 label 재할당
+      //     } else {
+      //       // y축 값이 null이라면
+      //       return null; // null 반환
+      //     }
+      //     console.log(context.dataset);
+      //     return context.dataset.data;
+      //     // return label; // 마찬가지로 재설정한 label도 꼭 반환해주세요!
+      //   },
+      // },
     },
   },
   scales: {
