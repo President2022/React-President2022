@@ -6,4 +6,9 @@ button {
   margin-right: 10px;
   color: blueviolet;
   background-color: #fff;
+  cursor: pointer;
+}
+.focused {
+  background-color: blueviolet;
+  color: #fff;
 }
