@@ -8,7 +8,7 @@ import Keyword from "./pages/Keyword";
 
 function App() {
   // console.log(firebase);
-  console.log(process.env);
+  // console.log(process.env);
   return (
     <Routes>
       <Route path="/" element={<Home />} />

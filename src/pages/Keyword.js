@@ -1,79 +1,34 @@
 import Layout from "../components/shared/Layout";
-import React, { useEffect } from "react";
-import * as d3 from "d3";
-import cloud from "d3-cloud";
+import React from "react";
+import acs from "../asset/ACS.json";
+import WordCloud from "react-d3-cloud";
+import { scaleOrdinal } from "d3-scale";
+import { schemeCategory10 } from "d3-scale-chromatic";
 
-const width = 500;
-const height = 400;
-
-function WordCloud() {
-  useEffect(() => {
-    const data = [
-      "Hello",
-      "world",
-      "normally",
-      "you",
-      "want",
-      "more",
-      "words",
-      "than",
-      "this",
-    ];
-
-    cloud()
-      .size([width, height])
-      .words(
-        data.map(function (d) {
-          return { text: d, size: 10 + Math.random() * 90, test: "haha" };
-        })
-      )
-      .padding(5)
-      .font("Impact")
-      .fontSize(function (d) {
-        return d.size;
-      })
-      .on("end", end)
-      .start();
-
-    function end(words) {
-      d3.select("#word-cloud")
-        .append("svg")
-        .attr("width", width)
-        .attr("height", height)
-        // .style("border", "1px solid black")
-        .append("g")
-        .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")
-        .selectAll("text")
-        .data(words)
-        .enter()
-        .append("text")
-        .style("font-size", function (d) {
-          return d.size + "px";
-        })
-        .style("font-family", "Impact")
-        .style("fill", function (d) {
-          return `hsl(${Math.random() * 360},100%,50%`;
-        })
-        .attr("text-anchor", "middle")
-        .attr("transform", function (d) {
-          console.log(d);
-          // const rotate = d.text.length > 4 ? 0 : 90;
-          return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
-        })
-        .text(function (d) {
-          return d.text;
-        });
-    }
-  });
-
-  return <div id="word-cloud"></div>;
+const data = [];
+for (let key in acs) {
+  data.push({ text: key, value: acs[key] });
 }
+const schemeCategory10ScaleOrdinal = scaleOrdinal(schemeCategory10);
 
 function Keyword() {
   return (
     <Layout activeMenu="keyword">
       <h2>Keyword</h2>
-      <WordCloud />
+      <WordCloud
+        data={data}
+        width={500}
+        height={500}
+        font="Times"
+        fontStyle="italic"
+        fontWeight="bold"
+        fontSize={(word) => Math.log2(word.value) * 5}
+        spiral="rectangular"
+        rotate={0}
+        padding={5}
+        random={Math.random}
+        fill={(d, i) => schemeCategory10ScaleOrdinal(i)}
+      />
     </Layout>
   );
 }
