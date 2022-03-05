@@ -4,8 +4,11 @@ import About from "./pages/About";
 import Algorithm from "./pages/Algorithm";
 import Graph from "./pages/Graph";
 import Keyword from "./pages/Keyword";
+// import { firebase } from "./asset/firebaseInit";
 
 function App() {
+  // console.log(firebase);
+  // console.log(process.env);
   return (
     <Routes>
       <Route path="/" element={<Home />} />

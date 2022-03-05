@@ -7,14 +7,6 @@
   pointer-events: none;
 }
 
-@font-face {
-  font-family: "LeferiPoint-WhiteObliqueA";
-  src: url("asset/fonts/LeferiPointWhiteOblique.otf") format("woff"),
-    url("asset/fonts/LeferiPointWhiteOblique.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-}
-
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
