@@ -1,5 +1,7 @@
 import Layout from "../components/shared/Layout";
 import styles from "./Graph.module.css";
+import graphData from "../asset/data/total_times.json";
+// import Papa from "papaparse";
 import { Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -22,29 +24,41 @@ ChartJS.register(
   Legend
 );
 
+const dateArray = [];
+const ljmArray = [];
+const ysyArray = [];
+const acsArray = [];
+for (let item in graphData.data) {
+  dateArray.push(graphData.data[item].index);
+  ljmArray.push(graphData.data[item].이재명);
+  ysyArray.push(graphData.data[item].윤석열);
+  acsArray.push(graphData.data[item].안철수);
+}
+
 const data = {
-  labels: ["January", "February", "March", "April", "May", "June", "July"],
+  labels: dateArray,
   datasets: [
     {
       type: "line",
       label: "이재명",
-      borderColor: "rgb(54, 162, 235)",
-      borderWidth: 2,
-      data: [2, 5, 4, 3, 6, 1],
+      data: ljmArray,
+      backgroundColor: "blue",
+      borderColor: "blue",
     },
     {
       type: "line",
       label: "윤석열",
-      backgroundColor: "rgb(255, 99, 132)",
-      data: [1, 2, 3, 4, 5, 6],
+      data: ysyArray,
+      backgroundColor: "red",
       borderColor: "red",
-      borderWidth: 2,
+      // borderWidth: 2,
     },
     {
       type: "line",
       label: "안철수",
-      backgroundColor: "rgb(75, 192, 192)",
-      data: [4, 3, 2, 6, 1, 5],
+      data: acsArray,
+      backgroundColor: "orange",
+      borderColor: "orange",
     },
   ],
 };
@@ -52,7 +66,7 @@ const data = {
 const options = {
   spanGaps: true,
   // line 타입의 경우 중간에 누락된 데이터가 있을 경우 이어그릴지 여부를 정합니다!
-  maxBarThickness: 10,
+  // maxBarThickness: 10,
   // bar 타입의 경우 막대의 최대 굵기를 정합니다!
   grouped: true,
   // x축 값이 같은 애들끼리 그룹화할지를 정하는데요,
@@ -81,7 +95,7 @@ const options = {
     },
     tooltip: {
       // 툴팁 스타일링
-      backgroundColor: "rgba(124, 35, 35, 0.4)",
+      backgroundColor: "rgba(100, 100, 100, 0.75)",
       // 툴팁 색상을 지정할 수 있습니다.
       padding: 10,
       // 툴팁 패딩을 지정할 수 있습니다.
@@ -136,88 +150,73 @@ const options = {
       // },
     },
   },
-  scales: {
-    // x축과 y축에 대한 설정을 할 수 있습니다.
-    x: {
-      // 여기서 x는 이 축의 id인데요, 이 안에서 axis 속성만 x로 지정해놓으시면 id를 x가 아니라 다른 이름으로 설정해도 무관합니다.
+  // scales: {
+  //   // x축과 y축에 대한 설정을 할 수 있습니다.
+  //   x: {
+  //     // 여기서 x는 이 축의 id인데요, 이 안에서 axis 속성만 x로 지정해놓으시면 id를 x가 아니라 다른 이름으로 설정해도 무관합니다.
 
-      // afterTickToLabelConversion을 이용하여
-      // x축 값이 어떻게 표시될지 설정할 수 있어요!
-      afterTickToLabelConversion: function (scaleInstance) {
-        const ticks = scaleInstance.ticks;
+  //     // afterTickToLabelConversion을 이용하여
+  //     // x축 값이 어떻게 표시될지 설정할 수 있어요!
+  //     afterTickToLabelConversion: function (scaleInstance) {
+  //       const ticks = scaleInstance.ticks;
 
-        const newTicks = ticks.map((tick) => {
-          return {
-            // 원본 x축 값을 이용하여 각 x축 값들이 어떻게 표시될지 수정할 수 있습니다.
-          };
-        });
+  //       const newTicks = ticks.map((tick) => {
+  //         return {
+  //           // 원본 x축 값을 이용하여 각 x축 값들이 어떻게 표시될지 수정할 수 있습니다.
+  //         };
+  //       });
 
-        scaleInstance.ticks = newTicks;
-        // scaleInstance.ticks에 새로운 ticks를 재할당해줘야 적용이 됩니다!
-      },
-      grid: {
-        // x축을 기준으로 그려지는 선(세로선)에 대한 설정입니다.
-        display: false, // 선이 아예 안 그려지게 됩니다.
-        drawTicks: true, // 눈금 표시 여부를 지정합니다.
-        tickLength: 4, // 눈금 길이를 지정합니다.
-        color: "#E2E2E230", // 눈금 및 선의 색상을 지정합니다.
-      },
-      axis: "x", // x축(가로축)인지 y축(세로축)인지 표시합니다.
-      // max: Date.parse(xMax) + 1296000000, // 축의 최대값을 강제합니다.
-      // min: Date.parse(xMin), // 축의 최소값을 강제합니다.
-      position: "bottom",
-      // top으로 설정하면 가로축이 차트 상단에 그려지게 됩니다!
-      ticks: {
-        minRotation: 45, // x축 값의 회전 각도를 설정할 수 있어요.
-        padding: 5, // x축 값의 상하 패딩을 설정할 수 있어요.
-      },
-    },
-    y: {
-      // 'y'라는 id를 가진 y축에 대한 설정
-      // type: isLinear ? "linear" : "logarithmic",
-      // 리니어 스케일뿐만 아니라 로그 스케일로도 표시할 수 있습니다.
-      grid: {
-        // 가로선 설정
-        color: "#E2E2E230",
-      },
-      afterDataLimits: (scale) => {
-        // y축의 최대값은 데이터의 최대값에 딱 맞춰져서 그려지므로
-        // y축 위쪽 여유공간이 없어 좀 답답한 느낌이 들 수 있는데요,
-        // 이와 같이 afterDataLimits 콜백을 사용하여 y축의 최대값을 좀 더 여유있게 지정할 수 있습니다!
-        scale.max = scale.max * 1.2;
-      },
-      axis: "y", // 이 축이 y축임을 명시해줍니다.
-      display: true, // 축의 가시성 여부도 설정할 수 있습니다.
-      position: "left", // 축이 왼쪽에 표시될지, 오른쪽에 표시될지 정할 수 있습니다.
-      title: {
-        // 이 축의 단위 또는 이름도 title 속성을 이용하여 표시할 수 있습니다.
-        display: true,
-        align: "end",
-        color: "#808080",
-        font: {
-          size: 12,
-          family: "'Noto Sans KR', sans-serif",
-          weight: 300,
-        },
-        text: "단위: 배",
-      },
-    },
-    // y축을 여러 개 두고 싶다면 아래와 같이 또 만들어 주세요.
-    y_sub: {
-      position: "right",
-      title: {
-        display: true,
-        align: "end",
-        color: "#808080",
-        font: {
-          size: 12,
-          family: "'Noto Sans KR', sans-serif",
-          weight: 300,
-        },
-        text: "단위: 배",
-      },
-    },
-  },
+  //       scaleInstance.ticks = newTicks;
+  //       // scaleInstance.ticks에 새로운 ticks를 재할당해줘야 적용이 됩니다!
+  //     },
+  //     grid: {
+  //       // x축을 기준으로 그려지는 선(세로선)에 대한 설정입니다.
+  //       display: false, // 선이 아예 안 그려지게 됩니다.
+  //       drawTicks: true, // 눈금 표시 여부를 지정합니다.
+  //       tickLength: 4, // 눈금 길이를 지정합니다.
+  //       color: "#E2E2E230", // 눈금 및 선의 색상을 지정합니다.
+  //     },
+  //     axis: "x", // x축(가로축)인지 y축(세로축)인지 표시합니다.
+  //     // max: Date.parse(xMax) + 1296000000, // 축의 최대값을 강제합니다.
+  //     // min: Date.parse(xMin), // 축의 최소값을 강제합니다.
+  //     position: "bottom",
+  //     // top으로 설정하면 가로축이 차트 상단에 그려지게 됩니다!
+  //     ticks: {
+  //       minRotation: 45, // x축 값의 회전 각도를 설정할 수 있어요.
+  //       padding: 5, // x축 값의 상하 패딩을 설정할 수 있어요.
+  //     },
+  //   },
+  //   y: {
+  //     // 'y'라는 id를 가진 y축에 대한 설정
+  //     // type: isLinear ? "linear" : "logarithmic",
+  //     // 리니어 스케일뿐만 아니라 로그 스케일로도 표시할 수 있습니다.
+  //     grid: {
+  //       // 가로선 설정
+  //       color: "#E2E2E230",
+  //     },
+  //     // afterDataLimits: (scale) => {
+  //     //   // y축의 최대값은 데이터의 최대값에 딱 맞춰져서 그려지므로
+  //     //   // y축 위쪽 여유공간이 없어 좀 답답한 느낌이 들 수 있는데요,
+  //     //   // 이와 같이 afterDataLimits 콜백을 사용하여 y축의 최대값을 좀 더 여유있게 지정할 수 있습니다!
+  //     //   scale.max = scale.max * 1.2;
+  //     // },
+  //     axis: "y", // 이 축이 y축임을 명시해줍니다.
+  //     display: true, // 축의 가시성 여부도 설정할 수 있습니다.
+  //     position: "left", // 축이 왼쪽에 표시될지, 오른쪽에 표시될지 정할 수 있습니다.
+  //     title: {
+  //       // 이 축의 단위 또는 이름도 title 속성을 이용하여 표시할 수 있습니다.
+  //       display: true,
+  //       align: "end",
+  //       color: "#808080",
+  //       font: {
+  //         size: 12,
+  //         family: "'Noto Sans KR', sans-serif",
+  //         weight: 300,
+  //       },
+  //       // text: "단위: 배",
+  //     },
+  //   },
+  // },
 };
 
 const Chart = () => {

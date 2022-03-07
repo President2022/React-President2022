@@ -1,11 +1,11 @@
-import React from "react";
+import React, { memo } from "react";
 import WordCloud from "react-d3-cloud";
 import { scaleOrdinal } from "d3-scale";
 import { schemeCategory10 } from "d3-scale-chromatic";
 
 const schemeCategory10ScaleOrdinal = scaleOrdinal(schemeCategory10);
 
-export default function WordClouds({ data }) {
+function WordClouds({ data }) {
   return (
     <WordCloud
       data={data}
@@ -22,3 +22,5 @@ export default function WordClouds({ data }) {
     />
   );
 }
+
+export default memo(WordClouds);

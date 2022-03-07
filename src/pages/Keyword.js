@@ -1,30 +1,18 @@
-import React, { useState, Suspense } from "react";
+import React, { useState, Suspense, useEffect } from "react";
 import Layout from "../components/shared/Layout";
 import Loading from "../components/keyword/Loading";
 import styles from "./Keyword.module.css";
-import acs from "../asset/ACS_keyword_result_v0.2.json";
-import ljm from "../asset/LJM_keyword_result_v0.2.json";
-import ysy from "../asset/YSY_keyword_result_v0.2.json";
 
-const candidates = [
-  { initialName: "ljm", name: "이재명", wordCloud: "ljmData" },
-  { initialName: "ysy", name: "윤석열", wordCloud: "ysyData" },
-  { initialName: "acs", name: "안철수", wordCloud: "acsData" },
-];
+import ljm from "../asset/data/LJM_result_v5.json";
+import ysy from "../asset/data/YSY_result_v5.json";
+import acs from "../asset/data/ACS_result_v5.json";
 
-const ljmData = [];
-const ysyData = [];
-const acsData = [];
-for (let key in acs) {
-  acsData.push({ text: key, value: acs[key] });
-}
-for (let key in ljm) {
-  ljmData.push({ text: key, value: ljm[key] });
-}
-for (let key in ysy) {
-  ysyData.push({ text: key, value: ysy[key] });
-}
 const WordClouds = React.lazy(() => import("../components/keyword/WordClouds"));
+const candidates = [
+  { name: "이재명", wordCloud: "ljmData" },
+  { name: "윤석열", wordCloud: "ysyData" },
+  { name: "안철수", wordCloud: "acsData" },
+];
 
 function Button({ target, onClick, name }) {
   return (
@@ -39,6 +27,30 @@ function Keyword() {
   const onClick = (event) => {
     setCandidate(event.target.innerText);
   };
+
+  const [ljmData, setLjmData] = useState([]);
+  const [ysyData, setysyData] = useState([]);
+  const [acsData, setacsData] = useState([]);
+
+  useEffect(() => {
+    const ljmArray = [];
+    const ysyArray = [];
+    const acsArray = [];
+
+    for (let key in ljm) {
+      ljmArray.push({ text: key, value: ljm[key] });
+    }
+    for (let key in ysy) {
+      ysyArray.push({ text: key, value: ysy[key] });
+    }
+    for (let key in acs) {
+      acsArray.push({ text: key, value: acs[key] });
+    }
+
+    setLjmData(ljmArray);
+    setysyData(ysyArray);
+    setacsData(acsArray);
+  }, []);
 
   return (
     <Layout activeMenu="keyword">
@@ -59,12 +71,18 @@ function Keyword() {
       <Suspense fallback={<Loading />}>
         {candidate === "전체" ? (
           <div>
-            이재명
-            <WordClouds data={ljmData} />
-            윤석열
-            <WordClouds data={ysyData} />
-            안철수
-            <WordClouds data={acsData} />
+            <div className={styles.box}>
+              <WordClouds data={ljmData} />
+              <div className={styles.name}>이재명</div>
+            </div>
+            <div className={styles.box}>
+              <WordClouds data={ysyData} />
+              <div className={styles.name}>윤석열</div>
+            </div>
+            <div className={styles.box}>
+              <WordClouds data={acsData} />
+              <div className={styles.name}>안철수</div>
+            </div>
           </div>
         ) : (
           <div>
