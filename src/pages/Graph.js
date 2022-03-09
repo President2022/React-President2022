@@ -1,6 +1,6 @@
 import Layout from "../components/shared/Layout";
 import styles from "./Graph.module.css";
-import graphData from "../asset/data/total_times.json";
+import graphData from "../asset/data/last_dtm.json";
 // import Papa from "papaparse";
 import { Line } from "react-chartjs-2";
 import {
@@ -23,16 +23,14 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-
+console.log(graphData.비율);
 const dateArray = [];
 const ljmArray = [];
 const ysyArray = [];
-const acsArray = [];
-for (let item in graphData.data) {
-  dateArray.push(graphData.data[item].index);
-  ljmArray.push(graphData.data[item].이재명);
-  ysyArray.push(graphData.data[item].윤석열);
-  acsArray.push(graphData.data[item].안철수);
+for (let item in graphData.비율) {
+  dateArray.push(graphData["Unnamed: 0"][item]);
+  ljmArray.push(graphData.비율[item]);
+  ysyArray.push(graphData["Unnamed: 5"][item]);
 }
 
 const data = {
@@ -53,13 +51,13 @@ const data = {
       borderColor: "red",
       // borderWidth: 2,
     },
-    {
-      type: "line",
-      label: "안철수",
-      data: acsArray,
-      backgroundColor: "orange",
-      borderColor: "orange",
-    },
+    // {
+    //   type: "line",
+    //   label: "안철수",
+    //   data: acsArray,
+    //   backgroundColor: "orange",
+    //   borderColor: "orange",
+    // },
   ],
 };
 
@@ -228,6 +226,11 @@ const Chart = () => {
 };
 
 function Graph() {
+  // console.log(graphData);
+  // console.log(graphData["Unnamed: 0"]);
+  // console.log(graphData["Unnamed: 5"]);
+  // console.log(graphData.비율);
+  // console.log(dateArray);
   return (
     <Layout activeMenu="graph">
       <h2>Graph</h2>

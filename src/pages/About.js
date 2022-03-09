@@ -14,26 +14,31 @@ function About() {
           여론조사 전화를 끝까지 할까?'라는 의문에서 시작되었습니다. 여론조사는
           대부분 전화조사로 이루어진다고 하는데요. 요즘은 본인의 후보 지지를
           그런 조사기관에 보다는
-          <b> 유튜브나 뉴스 기사 댓글</b>과 같은 곳에서 표출하고는 합니다.
+          <b> 유튜브나 뉴스 기사 댓글, SNS</b>와 같은 곳에서 표출하고는 합니다.
         </p>
-        <p>댓글로 살펴본 대선 후보들에 대한 민심은 어떨까요?</p>
+        <p>그중에서도 SNS로 살펴본 대선 후보들에 대한 민심은 어떨까요?</p>
         <hr />
         <h4>분석 방법</h4>
         <picture>
-          <source srcSet={VerticalImage} media="(max-width: 550px)" />
-          <source srcSet={VerticalImage} media="(max-width: 550px)" />
+          <source
+            srcSet={VerticalImage}
+            width={"100%"}
+            // sizes={{ width: "100%", height: "auto" }}
+            media="(max-width: 505px)"
+          />
           <img
             src={HorizontalImage}
             loading="lazy"
             alt="프로젝트 설명 이미지"
-            style={{ width: "100%", height: "auto" }}
+            // style={{ width: "100%", height: "auto" }}
           />
         </picture>
         <p>
-          네이버 기사 댓글들을 스크래핑하여 대선 후보 지지율을 알아보고자
-          하였습니다. 댓글별로 어떤 후보를 지지하는지 여부를 확인하기 위해 각
-          후보별 커뮤니티(디시인사이드 갤러리)에서 지지자에 대한 텍스트를
-          추출하였습니다.
+          후보 이름을 언급한 트위터를 스크래핑하여 대선 후보 지지율을 알아보고자
+          하였습니다. 트윗별로 어떤 후보를 지지하는지 여부를 확인하기 위해
+          텍스트로 머신러닝을 통해 각 후보별 커뮤니티(디시인사이드 갤러리)에서
+          지지자에 대한 텍스트를 추출하였습니다. 그리고 트위터별로 어떤 후보자를
+          지지하는 지 예측을 시도하여 대선 후보 지지율을 예측해보았습니다.
         </p>
       </div>
     </Layout>

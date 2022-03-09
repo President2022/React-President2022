@@ -29,7 +29,12 @@
   margin-left: 240px;
   /* margin-top: 25px; */
 }
-
+@media screen and (min-width: 280px) and (max-width: 505px) {
+  .contents {
+    margin-top: 105px;
+    margin-left: 30px;
+  }
+}
 @media screen and (min-width: 505px) and (max-width: 650px) {
   .contents {
     margin-top: 55px;
