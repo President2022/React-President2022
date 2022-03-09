@@ -8,6 +8,10 @@ button {
   background-color: #fff;
   cursor: pointer;
 }
+button:hover {
+  border: 1px solid purple;
+  color: purple;
+}
 .focused {
   background-color: blueviolet;
   color: #fff;

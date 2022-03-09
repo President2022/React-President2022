@@ -69,6 +69,7 @@ function Keyword() {
           key={index}
         />
       ))}
+      <span style={{ color: "#777" }}>안철수 사퇴 이전 2022.2.27 기준</span>
       <Suspense fallback={<Loading />}>
         {candidate === "전체" ? (
           <div>

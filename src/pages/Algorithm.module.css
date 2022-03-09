@@ -5,4 +5,7 @@ table {
 th,
 td {
   border: 1px solid #333;
+  width: 90px;
+  text-align: center;
+  word-break: keep-all;
 }

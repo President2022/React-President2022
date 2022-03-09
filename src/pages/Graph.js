@@ -233,8 +233,9 @@ function Graph() {
   // console.log(dateArray);
   return (
     <Layout activeMenu="graph">
-      <h2>Graph</h2>
+      <h2>트위터와 커뮤니티 데이터로 살펴본 이재명 vs 윤석열</h2>
       <Chart />
+      <p>2022년 3월 1일 ~ 3월 8일 기준 예측 지지율입니다.</p>
     </Layout>
   );
 }
