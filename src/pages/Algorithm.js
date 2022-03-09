@@ -15,7 +15,7 @@ function Algorithm() {
         예측 알고리즘 설명에 앞서 텍스트를 머신러닝에 활용하기 위해 전처리
         작업이 필요합니다. 각 문서별로 어떤 키워드들이 들어있고, 각 키워드의
         빈도를 행렬의 형태로 나타낸 것이{" "}
-        <mark style={{ backgroundColor: "#eeeedd" }}>문서 단위 행렬</mark>, 즉
+        <mark style={{ backgroundColor: "#eeccff" }}>문서 단위 행렬</mark>, 즉
         DTM이라고 합니다.
       </p>
       <div style={{ width: "100%", height: "150px", overflowX: "auto" }}>
@@ -97,9 +97,9 @@ function Algorithm() {
       </h3>
       <p>
         TF-IDF에서의 TF(Term Frequency)는{" "}
-        <mark style={{ backgroundColor: "#eeeedd" }}>단어 빈도</mark>,
+        <mark style={{ backgroundColor: "#eeccff" }}>단어 빈도</mark>,
         IDF(Inverse Document Frequency)는{" "}
-        <mark style={{ backgroundColor: "#eeeedd" }}>역 문서 빈도</mark>를
+        <mark style={{ backgroundColor: "#eeccff" }}>역 문서 빈도</mark>를
         가리키는 말입니다. 앞서 만든 DTM에서 TF-IDF의 가중치를 적용하는 과정이
         들어가는데요. 사실 TF는 이미 위의 DTM 예시에서 구하였습니다. DTM이 각
         문서에서의 각 단어의 등장 빈도를 나타내는 값이기 때문입니다.
@@ -281,7 +281,7 @@ function Algorithm() {
         중 Naïve-Bayes를 사용하였는데 이는 스팸 메일 정리, 텍스트 분류, 감정
         분석 등에 광범위하게 사용되는 지도학습 기법으로, 베이즈 추정(혹은
         정리)에서 파생된 개념입니다. 여기서{" "}
-        <mark style={{ backgroundColor: "#eeeedd" }}>베이즈 추정</mark>시의
+        <mark style={{ backgroundColor: "#eeccff" }}>베이즈 추정</mark>시의
         조건부 확률은 B 사건이 일어나는 경우에 A 사건이 일어날 확률(=P(A|B))로,
         본 프로젝트에서는 '(B 사건) 특정 키워드가 등장하는 경우, ’(A 사건) 특정
         후보를 지지할 확률' 정도로 생각해볼 수 있습니다.
@@ -329,7 +329,7 @@ function Algorithm() {
           TF-IDF 행렬이 항상 DTM으로 수행했을 때보다 성능이 뛰어나지는 않습니다.
         </i>
       </p>
-      <div style={{ display: "flex", justifyContent: "center" }}>
+      <div style={{ width: "100%", overflowX: "auto" }}>
         <table border="1">
           <thead>
             <tr>
@@ -337,9 +337,7 @@ function Algorithm() {
               <th style={{ minWidth: "200px" }}>문서</th>
               <th style={{ minWidth: "150px" }}>DTM 또는 TF-IDF</th>
               <th>지지후보</th>
-              <th style={{ minWidth: "150px" }}>
-                Naive Bayes로 계산된 확률(예시)
-              </th>
+              <th style={{ minWidth: "150px" }}>Naive Bayes 결과(예시)</th>
             </tr>
           </thead>
           <tbody>
@@ -348,38 +346,38 @@ function Algorithm() {
               <td>이재명 뽑고 싶다</td>
               <td>...</td>
               <td>이재명</td>
-              <td>90%</td>
+              <td>0.9</td>
             </tr>
             <tr>
               <td>윤석열 뽑고 싶다</td>
               <td>...</td>
               <td>윤석열</td>
-              <td>80%</td>
+              <td>0.8</td>
             </tr>
             <tr>
               <td>윤석열 아내 김건희와 윤석열</td>
               <td>...</td>
               <td>이재명</td>
-              <td>40%</td>
+              <td>0.5</td>
             </tr>
             <tr>
               <td>대통령 누구 투표할까</td>
               <td>...</td>
               <td>윤석열</td>
-              <td>60%</td>
+              <td>0.6</td>
             </tr>
             <tr>
               <td rowspan="2">test</td>
               <td>이재명 투표할까</td>
               <td>...</td>
-              <td>이재명</td>
-              <td>55%</td>
+              <td>?</td>
+              <td>이재명 지지확률 0.7</td>
             </tr>
             <tr>
               <td>윤석열 투표할까</td>
               <td>...</td>
-              <td>윤석열</td>
-              <td>55%</td>
+              <td>?</td>
+              <td>윤석열 지지확률 0.7</td>
             </tr>
           </tbody>
         </table>

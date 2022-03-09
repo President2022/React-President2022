@@ -1,6 +1,6 @@
 import Layout from "../components/shared/Layout";
 import styles from "./Graph.module.css";
-import graphData from "../asset/data/last_dtm.json";
+import graphData from "../asset/data/100key.json";
 // import Papa from "papaparse";
 import { Line } from "react-chartjs-2";
 import {
@@ -23,14 +23,14 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-console.log(graphData.비율);
+// console.log(graphData);
 const dateArray = [];
 const ljmArray = [];
 const ysyArray = [];
-for (let item in graphData.비율) {
+for (let item in graphData.총) {
   dateArray.push(graphData["Unnamed: 0"][item]);
-  ljmArray.push(graphData.비율[item]);
-  ysyArray.push(graphData["Unnamed: 5"][item]);
+  ljmArray.push(graphData["LJM.1"][item]);
+  ysyArray.push(graphData["YSY.1"][item]);
 }
 
 const data = {

@@ -69,21 +69,24 @@ function Keyword() {
           key={index}
         />
       ))}
-      <span style={{ color: "#777" }}>안철수 사퇴 이전 2022.2.27 기준</span>
+      <div style={{ color: "#555", textAlign: "right" }}>
+        출처 | 디시인사이트 각 후보자 갤러리 내 게시물
+        <br /> (안철수 사퇴 이전) 2022.2.27 기준
+      </div>
       <Suspense fallback={<Loading />}>
         {candidate === "전체" ? (
           <div>
             <div className={styles.box}>
               <WordClouds data={ljmData} />
-              <div className={styles.name}>이재명</div>
+              <div className={styles.name}>▲ 이재명</div>
             </div>
             <div className={styles.box}>
               <WordClouds data={ysyData} />
-              <div className={styles.name}>윤석열</div>
+              <div className={styles.name}>▲ 윤석열</div>
             </div>
             <div className={styles.box}>
               <WordClouds data={acsData} />
-              <div className={styles.name}>안철수</div>
+              <div className={styles.name}>▲ 안철수</div>
             </div>
           </div>
         ) : (
