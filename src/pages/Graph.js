@@ -8,7 +8,6 @@ import {
 	Title,
 	Tooltip,
 } from 'chart.js';
-// import Papa from "papaparse";
 import { Line } from 'react-chartjs-2';
 import graphData from '../asset/data/100key.json';
 import Layout from '../components/shared/Layout';
@@ -86,7 +85,7 @@ const options = {
 				// 범례 간 가로 간격을 조정할 수 있습니다. 범례의 상하 padding을 지정하는 기능은 따로 지원되지 않아요. ㅠㅠ
 				font: {
 					// 범례의 폰트 스타일도 지정할 수 있습니다.
-					family: "'Noto Sans KR', 'serif'",
+					family: 'IBMPlexSansKR-Regular',
 					lineHeight: 1,
 				},
 			},
@@ -102,28 +101,11 @@ const options = {
 			bodyFont: {
 				font: {
 					// 툴팁 내용의 폰트 스타일을 지정할 수 있습니다.
-					family: "'Noto Sans KR', sans-serif",
+					family: 'IBMPlexSansKR-Regular',
 				},
 			},
 			usePointStyle: true,
-			// 범례 도형 모양과 마찬가지로 툴팁 내부에서도 도형의 모양을 지정할 수 있어요.
-			// filter: (item) => item.parsed.y !== null,
-			// // 툴팁에 표시될 항목을 필터링할 수 있는데요,
-			// // 예를 들어 값이 null인 항목은 툴팁에 나타나지 않게 하려면
-			// // 위와 같이 설정해주시면 됩니다.
 			callbacks: {
-				//   // 툴팁에 표시되는 내용은 이와 같이 콜백 함수를 통해
-				//   // 조건에 맞게 수정할 수 있습니다!
-				//   title: (context) => {
-				//     // 툴팁에서 x축 값이 어떻게 표시될지 설정할 수 있어요.
-				//     let title = "";
-
-				//     // (context를 콘솔에 찍어보시면 차트에 전달되는 dataset과
-				//     // 그 값들을 확인할 수 있는데요, 이를 바탕으로 조건을 구성하고
-				//     // 그 조건에 따라 title을 재설정해주시면 됩니다.)
-
-				//     return title; // 재설정한 title은 꼭 반환해주세요!
-				//   },
 				label: (context) => {
 					// 툴팁에서 후보별 지지율을 소수점 둘째자리까지 보여준다.
 					let title = context.dataset.label;
@@ -152,15 +134,9 @@ const options = {
 			display: true, // 축의 가시성 여부도 설정할 수 있습니다.
 			position: 'left', // 축이 왼쪽에 표시될지, 오른쪽에 표시될지 정할 수 있습니다.
 			title: {
-				//       // 이 축의 단위 또는 이름도 title 속성을 이용하여 표시할 수 있습니다.
 				display: true,
 				align: 'end',
 				color: '#808080',
-				// font: {
-				// 	size: 12,
-				// 	family: "'Noto Sans KR', sans-serif",
-				// 	weight: 300,
-				// },
 				text: '(%)',
 			},
 		},
@@ -176,11 +152,6 @@ const Chart = () => {
 };
 
 function Graph() {
-	// console.log(graphData);
-	// console.log(graphData["Unnamed: 0"]);
-	// console.log(graphData["Unnamed: 5"]);
-	// console.log(graphData.비율);
-	// console.log(dateArray);
 	return (
 		<Layout activeMenu='graph'>
 			<h2>트위터와 커뮤니티 데이터로 살펴본 이재명 vs 윤석열</h2>
